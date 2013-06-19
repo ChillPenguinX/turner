@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "turner-test",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.2.6",
     "ejs": "*",
-    "stylus": "*"
+    "stylus": "*",
+    "oauth": "0.9.10"
   }
 }
