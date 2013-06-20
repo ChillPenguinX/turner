@@ -5,3 +5,10 @@ body {
 a {
   color: #00b7ff;
 }
+@media (min-width: 1001px) {
+  body {
+    column-count: 3;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+  }
+}
