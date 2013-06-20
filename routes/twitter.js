@@ -22,7 +22,9 @@ exports.oauth = function(req, res) {
       // console.log('bearer: ',access_token);
       // done();
       req.session.access_token = access_token;
-      res.redirect("/cnnbrk-tweets");
+      if (req.params.redirect) {
+        res.redirect('/' + req.params.redirect);
+      }
     }
   );
 };
@@ -33,21 +35,21 @@ exports.tweets = function(req, res) {
     $.ajax({
       url: 'https://api.twitter.com/1.1/statuses/user_timeline.json', 
       data: { 
-        screen_name: 'cnnbrk',
+        screen_name: req.params.handle,
         count: 10
       },
       headers: {
         Authorization: 'Bearer ' + req.session.access_token
       },
       success: function(data, textStatus, jqXHR) {
-        res.render('tweets', { title: 'cnnbrk', tweets: data });
+        res.render('tweets', { title: req.params.handle, tweets: data });
       },
       error: function(data) {
         res.send(data);
       }
     });
   } else {
-    res.redirect('/auth/twitter');
+    res.redirect('/auth/twitter/'+ req.params.handle + '-tweets');
   }
 }
 
