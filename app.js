@@ -34,7 +34,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/auth/twitter', twitter.oauth);
-app.get('/auth/twitter/callback', twitter.callback);
+app.get('/cnnbrk-tweets', twitter.tweets);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

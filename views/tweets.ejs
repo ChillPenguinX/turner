@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <% for(var i=0; i<tweets.length; i++) {%>
+       <blockquote class="twitter-tweet">
+        <p>
+          <% var words = tweets[i].text.split(' ') %>
+          <% for(var j=0; j<words.length; j++) {%>
+            <% if (words[j].indexOf('http') == 0) {%>
+              <a href="<%= words[j] %>"><%= words[j] %></a>
+            <% } else if (words[j].indexOf('#') == 0) {%>
+              <a href="https://twitter.com/search?q=%23<%= words[j].substring(1) %>&amp;src=hash"><%= words[j] %></a>
+            <% } else {%>
+              <%= words[j] %>
+            <% } %>
+          <% } %>
+        </p>&mdash; <%= tweets[i].user.name %> (@<%= tweets[i].user.screen_name %>) <a href="https://twitter.com/<%= tweets[i].user.screen_name %>/statuses/<%= tweets[i].id_str %>">June 20, 2013</a></blockquote>
+    <% } %>
+  </body>
+</html>
