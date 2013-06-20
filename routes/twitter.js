@@ -19,8 +19,6 @@ exports.oauth = function(req, res) {
     '',
     {'grant_type':'client_credentials'},
     function (e, access_token, refresh_token, results){
-      // console.log('bearer: ',access_token);
-      // done();
       req.session.access_token = access_token;
       if (req.params.redirect) {
         res.redirect('/' + req.params.redirect);
@@ -31,7 +29,6 @@ exports.oauth = function(req, res) {
 
 exports.tweets = function(req, res) {
   if (req.session.access_token) {
-    // res.send(req.session.oauth);
     $.ajax({
       url: 'https://api.twitter.com/1.1/statuses/user_timeline.json', 
       data: { 
