@@ -5,7 +5,6 @@
 
 var express = require('express')
   , routes  = require('./routes')
-  , user    = require('./routes/user')
   , twitter = require('./routes/twitter')
   , http    = require('http')
   , path    = require('path');
@@ -32,7 +31,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 app.get('/auth/twitter/', twitter.oauth);
 app.get('/auth/twitter/:redirect', twitter.oauth);
 app.get('/:handle-tweets', twitter.tweets);
